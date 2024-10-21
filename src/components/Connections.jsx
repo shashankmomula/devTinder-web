@@ -7,34 +7,37 @@ import { addConnections } from "../utils/connectionSlice";
 const Connections = () => {
   const connections = useSelector((store) => store.connections);
   const dispatch = useDispatch();
+
   const fetchConnections = async () => {
     try {
-      const res = await axios.get(BASE_URL + "/user/connections", {
+      const res = await axios.get(`${BASE_URL}/user/connections`, {
         withCredentials: true,
       });
-
       dispatch(addConnections(res.data.data));
-      console.log(connections);
     } catch (err) {
-      //
+      console.error("Error fetching connections:", err);
     }
   };
 
   useEffect(() => {
     fetchConnections();
   }, []);
-  if (!connections) return;
-  if (connections.length === 0) return <h1>No connections found</h1>;
+
+  // Return null if there are no connections or if connections is undefined
+  if (!connections || connections.length === 0)
+    return <h1>No connections found</h1>;
+
   return (
     <div className="text-center my-10">
       <h1 className="text-bold text-white text-3xl">Connections</h1>
-
       {connections.map((connection) => {
-        const { firstName, lastName, photoUrl, age, gender, about } =
-          connection;
+        const { _id, firstName, lastName, photoUrl, about } = connection; // Assuming there's an id
 
         return (
-          <div className="flex m-4 p-4 rounded-lg bg-base-300 w-1/2 mx-auto">
+          <div
+            key={_id}
+            className="flex m-4 p-4 rounded-lg bg-base-300 w-1/2 mx-auto"
+          >
             <div>
               <img
                 alt="photo"
