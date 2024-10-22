@@ -15,7 +15,7 @@ const Connections = () => {
       });
       dispatch(addConnections(res.data.data));
     } catch (err) {
-      console.error("Error fetching connections:", err);
+      // Handle error
     }
   };
 
@@ -23,33 +23,39 @@ const Connections = () => {
     fetchConnections();
   }, []);
 
-  // Return null if there are no connections or if connections is undefined
+  // Return message if no connections are found
   if (!connections || connections.length === 0)
-    return <h1>No connections found</h1>;
+    return (
+      <h1 className="flex justify-center my-10 text-black-700">
+        No connections found
+      </h1>
+    );
 
   return (
     <div className="text-center my-10">
-      <h1 className="text-bold text-white text-3xl">Connections</h1>
+      <h1 className="font-bold text-4xl text-slate-300 mb-8">
+        Your Connections
+      </h1>
       {connections.map((connection) => {
-        const { _id, firstName, lastName, photoUrl, about } = connection; // Assuming there's an id
+        const { _id, firstName, lastName, photoUrl, about } = connection;
 
         return (
           <div
             key={_id}
-            className="flex m-4 p-4 rounded-lg bg-base-300 w-1/2 mx-auto"
+            className="flex m-4 justify-between items-center bg-slate-300 shadow-md p-6 rounded-lg w-11/12 md:w-3/5 mx-auto transition-transform transform hover:scale-105"
           >
-            <div>
+            <div className="flex items-center space-x-4">
               <img
-                alt="photo"
-                className="w-20 h-20 rounded-full"
+                alt="profile"
+                className="w-24 h-24 rounded-full border-2 border-gray-300"
                 src={photoUrl}
               />
-            </div>
-            <div className="text-left mx-4">
-              <h2 className="font-bold text-xl">
-                {firstName + " " + lastName}
-              </h2>
-              <p>{about}</p>
+              <div className="text-left">
+                <h2 className="font-semibold text-2xl text-gray-900">
+                  {firstName} {lastName}
+                </h2>
+                <p className="text-gray-700 mt-2">{about}</p>
+              </div>
             </div>
           </div>
         );
