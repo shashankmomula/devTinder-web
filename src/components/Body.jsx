@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { addUser } from "../utils/userSlice";
 import { useEffect } from "react";
 import axios from "axios";
+import backDrop from "../BG.jpg"; // Import the background image
 
 const Body = () => {
   const dispatch = useDispatch();
@@ -31,11 +32,27 @@ const Body = () => {
   useEffect(() => {
     fetchUser();
   }, []);
+
   return (
-    <div>
-      <NavBar />
-      <Outlet />
-      {/* <Footer/> */}
+    <div className="relative min-h-screen">
+      {/* Background Layer */}
+      <div
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat z-0"
+        style={{
+          backgroundImage: `url(${backDrop})`,
+          // filter: "blur(0.5px)", // Apply blur only to the background
+          opacity: 0.1, // Lighten the background
+        }}
+      ></div>
+
+      {/* Overlay (Optional) */}
+      <div className="absolute inset-0 bg-white opacity-30 z-0"></div>
+
+      {/* Main Content */}
+      <div className="relative z-10">
+        <NavBar />
+        <Outlet />
+      </div>
     </div>
   );
 };

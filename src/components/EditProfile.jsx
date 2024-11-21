@@ -36,14 +36,14 @@ const EditProfile = ({ user }) => {
   };
   return (
     <div className="flex justify-center ">
-      <div className="flex justify-center mx-10">
-        <div className="card bg-base-300 w-96 shadow-xl">
+      <div className="flex justify-center mx-16 my-10">
+        <div className="card  bg-neutral-400  w-96 shadow-xl">
           <div className="card-body">
-            <h2 className="card-title flex justify-center">Edit Profile</h2>
-            <div>
+            <h2 className="card-title flex justify-center text-black">Edit Profile</h2>
+            <div className="">
               <label className="form-control w-full max-w-xs my-2">
                 <div className="label">
-                  <span className="label-text">First Name:</span>
+                  <span className="label-text text-black">First Name:</span>
                 </div>
                 <input
                   type="text"
@@ -55,7 +55,7 @@ const EditProfile = ({ user }) => {
 
               <label className="form-control w-full max-w-xs my-2">
                 <div className="label">
-                  <span className="label-text">Last Name:</span>
+                  <span className="label-text text-black">Last Name:</span>
                 </div>
                 <input
                   type="text"
@@ -66,7 +66,7 @@ const EditProfile = ({ user }) => {
               </label>
               <label className="form-control w-full max-w-xs my-2">
                 <div className="label">
-                  <span className="label-text">Photo Url:</span>
+                  <span className="label-text text-black">Photo Url:</span>
                 </div>
                 <input
                   type="text"
@@ -77,7 +77,7 @@ const EditProfile = ({ user }) => {
               </label>
               <label className="form-control w-full max-w-xs my-2">
                 <div className="label">
-                  <span className="label-text">Age:</span>
+                  <span className="label-text text-black">Age:</span>
                 </div>
                 <input
                   type="text"
@@ -88,7 +88,7 @@ const EditProfile = ({ user }) => {
               </label>
               <label className="form-control w-full max-w-xs my-2">
                 <div className="label">
-                  <span className="label-text">Gender:</span>
+                  <span className="label-text text-black">Gender:</span>
                 </div>
                 <input
                   type="text"
@@ -99,7 +99,7 @@ const EditProfile = ({ user }) => {
               </label>
               <label className="form-control w-full max-w-xs my-2">
                 <div className="label">
-                  <span className="label-text">About:</span>
+                  <span className="label-text text-black">About:</span>
                 </div>
                 <textarea
                   className="textarea"
@@ -111,7 +111,7 @@ const EditProfile = ({ user }) => {
             </div>
             <p className="text-red-600"></p>
             <div className="card-actions flex justify-center my-1">
-              <button className="btn btn-primary" onClick={saveProfile}>
+              <button className="btn bg-slate-600 text-white" onClick={saveProfile}>
                 Save Profile
               </button>
             </div>

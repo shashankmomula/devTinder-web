@@ -34,7 +34,7 @@ const Requests = () => {
 
   if (!requests || requests.length === 0)
     return (
-      <h1 className="flex justify-center my-10 text-gray-700">
+      <h1 className="flex justify-center my-10 text-xl text-white">
         No requests found
       </h1>
     );
@@ -50,7 +50,7 @@ const Requests = () => {
         return (
           <div
             key={_id}
-            className="flex m-4 justify-between items-center bg-slate-300 shadow-md p-6 rounded-lg w-11/12 md:w-3/5 mx-auto transition-transform transform hover:scale-105"
+            className="flex m-4 justify-between items-center bg-neutral-400  shadow-md p-6 rounded-lg w-11/12 md:w-3/5 mx-auto transition-transform transform hover:scale-105"
           >
             <div className="flex items-center space-x-4">
               <img
