@@ -85,6 +85,17 @@ A full-stack MERN application that connects developers by enabling user authenti
 - `GET /feed?page=1&limit=10`
 
 ---
+## Screenshots
+
+### Login Page
+![SignUp Page](./src/components/screenshots/DevTinder_signup.png)
+
+### User Profile Page
+![Profile Page]()
+
+### Dynamic Feed
+![Dynamic Feed](./src/components/screenshots/DevTinder_Feed.png)
+
 
 ## **Future Enhancements**  
 - Add real-time notifications using WebSockets.  
