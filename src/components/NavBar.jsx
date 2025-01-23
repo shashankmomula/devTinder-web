@@ -22,9 +22,10 @@ const NavBar = () => {
   return (
     <div className="navbar bg-zinc-800">
       <div className="flex-1">
-        <Link to="/" className="btn btn-ghost text-xl">
+        {!user && <p className="font-bold p-4">🧑‍💻 DevTinder</p>}
+        {user && <Link to="/" className="btn btn-ghost text-xl">
           🧑‍💻 DevTinder
-        </Link>
+        </Link>}
       </div>
       {user && (
         <div className="flex-none gap-2">
