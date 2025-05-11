@@ -15,6 +15,9 @@ const EditProfile = ({ user }) => {
   const [about, setAbout] = useState(user.about || "");
   const [error, setError] = useState("");
   const [showToast, setShowToast] = useState(false);
+  const [tech,setTech] = useState([]);
+  const [techInput,setTechInput] = useState("");
+
   const dispatch = useDispatch();
 
   const saveProfile = async () => {
@@ -34,6 +37,27 @@ const EditProfile = ({ user }) => {
       setError(err.response);
     }
   };
+
+  const handleTechClick = (e)=>{
+
+    const newChip = {
+      id:Date.now(),
+      label:techInput.trim()
+    };
+
+   if(e.key === "Enter"){
+      
+    const newTech = techInput.trim();
+
+    setTech([...tech,newChip]);
+    setTechInput("");
+   }
+  }
+
+  const handleDeleteTech = (id)=>{
+    const updateTech = tech.filter((chip)=> chip.id!== id);
+    setTech(updateTech);
+  }
   return (
     <div className="flex justify-center ">
       <div className="flex justify-center mx-16 my-10">
@@ -109,12 +133,42 @@ const EditProfile = ({ user }) => {
                 ></textarea>
               </label>
             </div>
-            <p className="text-red-600"></p>
+             <div className="label">
+                  <span className="label-text text-black">Technologies:</span>
+                </div>
+            <div>
+              <input 
+              placeholder="Tech"
+              value={techInput}
+              onChange={(e) => setTechInput(e.target.value)}
+              onKeyDown={(e) => handleTechClick(e)}
+              className="input input-bordered w-full max-w-xs"
+              ></input>
+            </div>
+            <div className="flex flex-wrap gap-2 mt-4">
+  {tech.map((t) => (
+    <div
+      key={t.id}
+      className="flex items-center bg-gradient-to-r from-slate-200 to-slate-300 text-black px-3 py-1 rounded-full shadow-md hover:shadow-lg transition duration-200"
+    >
+      <span className="mr-2 font-medium">{t.label}</span>
+      <button
+        className="text-red-500 hover:text-red-700 font-bold text-lg transition duration-200"
+        onClick={() => handleDeleteTech(t.id)}
+      >
+        &times;
+      </button>
+    </div>
+  ))}
+</div>
+
+            
             <div className="card-actions flex justify-center my-1">
               <button className="btn bg-slate-600 text-white" onClick={saveProfile}>
                 Save Profile
               </button>
             </div>
+            
           </div>
         </div>
       </div>
