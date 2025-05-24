@@ -34,15 +34,11 @@ const Body = () => {
   }, []);
 
   return (
-    <div className="relative min-h-screen">
+    <div className="relative min-h-screen bg-white">
       {/* Background Layer */}
       <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat z-0"
-        style={{
-          backgroundImage: `url(${backDrop})`,
-          // filter: "blur(0.5px)", // Apply blur only to the background
-          opacity: 0.1, // Lighten the background
-        }}
+        
       ></div>
 
       {/* Overlay (Optional) */}

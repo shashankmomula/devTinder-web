@@ -4,7 +4,7 @@ import { BASE_URL } from "../utils/constants";
 import { removeUserFromFeed } from "../utils/feedSlice";
 
 const UserCard = ({ user }) => {
-  const { _id, firstName, lastName, about, age, photoUrl, gender } = user;
+  const { _id, firstName, lastName, about, age, photoUrl, gender,skills } = user;
   const dispatch = useDispatch();
 
   const handleSendRequest = async (status, userId) => {
@@ -23,12 +23,13 @@ const UserCard = ({ user }) => {
   return (
     <div className="card border-l-indigo-900 bg-slate-950 shadow-lg rounded-lg overflow-hidden w-80 transition-all hover:shadow-2xl my-8">
       <figure className="overflow-hidden">
-        <img
-          src={photoUrl}
-          alt="userPhoto"
-          className=" rounded-full w-48 h-48 m-8 bg-black"
-        />
-      </figure>
+  <img
+    src={photoUrl}
+    alt="userPhoto"
+    className="rounded-full w-48 h-48 m-8 bg-black object-cover"
+  />
+</figure>
+
       <div className="">
         <h2 className="text-2xl font-bold text-white mb-1 flex justify-center">
           {firstName} {lastName} <span className="text-slate-400 ml-3">{age && `${age}`}</span>
@@ -39,7 +40,23 @@ const UserCard = ({ user }) => {
           </p>
         )} */}
         <p className="text-slate-400 text-sm mb-4 flex justify-center m-2">{about}</p>
+        <div className="">
+          {skills && skills.length > 0 && (
+  <div className="flex flex-wrap justify-center gap-2 px-4 mb-4">
+    {skills.map((skill, idx) => (
+      <span
+        key={idx}
+        className="bg-slate-700 text-white text-xs font-semibold px-3 py-1 rounded-full shadow-sm"
+      >
+        {skill}
+      </span>
+    ))}
+  </div>
+)}
+        </div>
         <div className=" flex justify-center m-3">
+          
+
           <button
             className="btn bg-slate-700 text-white hover:bg-blue-400 rounded-lg px-10 py-2 text-sm m-1"
             onClick={() => handleSendRequest("ignored", _id)}

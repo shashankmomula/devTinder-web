@@ -3,6 +3,7 @@ import { BASE_URL } from "../utils/constants";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addConnections } from "../utils/connectionSlice";
+import { Link } from "react-router-dom";
 
 const Connections = () => {
   const connections = useSelector((store) => store.connections);
@@ -26,14 +27,14 @@ const Connections = () => {
   // Return message if no connections are found
   if (!connections || connections.length === 0)
     return (
-      <h1 className="flex justify-center my-10 text-black-700">
+      <h1 className="flex justify-center my-10 text-xl text-black">
         No connections found
       </h1>
     );
 
   return (
     <div className="text-center my-10">
-      <h1 className="font-bold text-4xl text-slate-300 mb-8">
+      <h1 className="font-bold text-4xl text-black mb-8">
         Your Connections
       </h1>
       {connections.map((connection) => {
@@ -42,7 +43,7 @@ const Connections = () => {
         return (
           <div
             key={_id}
-            className="flex m-4 justify-between items-center bg-slate-300 shadow-md p-6 rounded-lg w-11/12 md:w-3/5 mx-auto transition-transform transform hover:scale-105"
+            className="flex m-4 justify-between items-center bg-slate-300 shadow-md p-6 rounded-lg w-11/12 md:w-3/5 mx-auto"
           >
             <div className="flex items-center space-x-4">
               <img
@@ -57,6 +58,10 @@ const Connections = () => {
                 <p className="text-gray-700 mt-2">{about}</p>
               </div>
             </div>
+            <Link to={"/chat/"+_id}>
+               <button className="btn btn-primary">Chat</button>
+            </Link>
+           
           </div>
         );
       })}
